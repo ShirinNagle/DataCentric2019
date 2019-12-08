@@ -68,7 +68,7 @@ public class HeadOfficeController {
 		return headOffices;
 	}*/
 	
-	public String addHeadOffice(HeadOffice hOffice) {
+	/*public String addHeadOffice(HeadOffice hOffice) {
 		try {
 		mDAO.addHeadOffice(hOffice);
 		
@@ -78,6 +78,6 @@ public class HeadOfficeController {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
 
 }//end of class

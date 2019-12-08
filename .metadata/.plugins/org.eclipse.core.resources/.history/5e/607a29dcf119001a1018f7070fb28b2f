@@ -12,8 +12,8 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class ProductController {
 	
-	private DAO dao;
-	private ArrayList<Product>products; 
+	DAO dao;
+	ArrayList<Product>products; 
 	
 	public ProductController() {//Managed bean must have 1 no args constructor
 		super();
@@ -23,7 +23,7 @@ public class ProductController {
 		
 			e.printStackTrace();
 		}
-		//this.setProducts(new ArrayList<Product>());
+		//this.setProducts(new ArrayList<Student>());
 	}
 
 	public ArrayList<Product> getProducts() {

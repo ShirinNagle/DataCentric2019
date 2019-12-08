@@ -23,7 +23,7 @@ public class ProductController {
 		
 			e.printStackTrace();
 		}
-		//this.setProducts(new ArrayList<Product>());
+		//this.setProducts(new ArrayList<Student>());
 	}
 
 	public ArrayList<Product> getProducts() {

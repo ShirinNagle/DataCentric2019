@@ -12,11 +12,11 @@ import javax.faces.context.FacesContext;
 public class HeadOfficeController {
 	
 	//DAO dao;
-	private MongoDAO mDAO;
-	private ArrayList<HeadOffice>headOffices;
+	MongoDAO mDAO;
+	ArrayList<HeadOffice>headOffices;
 	//String headOffice;
 	
-	public HeadOfficeController(){
+	public HeadOfficeController() {
 		super();
 		
 		try {
@@ -25,7 +25,6 @@ public class HeadOfficeController {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	//public ArrayList<HeadOffice> loadHeadOffices() {
 	public String loadHeadOffices() {
@@ -42,12 +41,6 @@ public class HeadOfficeController {
 		//return headOffices;
 		return null;
 	}
-	
-	public ArrayList<HeadOffice> getHeadOffices() {
-		return headOffices;
-		
-	}
-	
 	//Method to check MySQL DB to see if store id already exists
 	/*public ArrayList<HeadOffice> getHeadOffices(int sid) {
 		
@@ -68,7 +61,7 @@ public class HeadOfficeController {
 		return headOffices;
 	}*/
 	
-	public String addHeadOffice(HeadOffice hOffice) {
+	/*public String addHeadOffice(HeadOffice hOffice) {
 		try {
 		mDAO.addHeadOffice(hOffice);
 		
@@ -78,6 +71,6 @@ public class HeadOfficeController {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
 
 }//end of class

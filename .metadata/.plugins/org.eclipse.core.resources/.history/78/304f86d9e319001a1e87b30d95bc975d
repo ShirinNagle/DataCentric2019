@@ -31,7 +31,7 @@ public class MongoDAO {
 	}
 	
 	public ArrayList<HeadOffice> loadHeadOffices(){
-		
+		//FindIterable<Document> stores = collection.find();
 		FindIterable<Document> headOffices = collection.find();
 		
 		ArrayList<HeadOffice> headOfficeList = new ArrayList<HeadOffice>();
@@ -43,7 +43,7 @@ public class MongoDAO {
 			   headOfficeList.add(ho);
 		}
 			
-		mongoClient.close();
+		//mongoClient.close();
 		
 			return headOfficeList;
 		
@@ -51,13 +51,13 @@ public class MongoDAO {
 	
 	
 	
-	// This worked but after I tried to check MySQL if a store ID existed - it no longer worked even after removing the code for that - Is there an issue with putting DAO query in MongoDAO
-	 public void addHeadOffice(HeadOffice ho) {
+	/* This worked but after I tried to check MySQL if a store ID existed - it no longer worked even after removing the code for that - Is there an issue with putting DAO query in MongoDAO
+	 * public void addHeadOffice(HeadOffice ho) {
 		MongoCollection<Document> headOffices = database.getCollection("storeHeadOffice");
 		Document myDoc = new Document();
 		myDoc.append("_id", ho.get_id()).append("location", ho.getLocation());
 		headOffices.insertOne(myDoc);
-	}
+	}*/
 	
 	
 	

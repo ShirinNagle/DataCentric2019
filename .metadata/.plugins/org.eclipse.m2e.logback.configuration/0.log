@@ -22,3 +22,5 @@ org.eclipse.debug.core.DebugException: Launch configuration Tomcat v9.0 Server a
 	at org.eclipse.ui.internal.console.ConsolePatternMatcher.disconnect(ConsolePatternMatcher.java:260) [org.eclipse.ui.console_3.8.600.v20190815-2020.jar:na]
 	at org.eclipse.ui.internal.console.ConsolePatternMatcher$MatchJob.run(ConsolePatternMatcher.java:164) [org.eclipse.ui.console_3.8.600.v20190815-2020.jar:na]
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63) [org.eclipse.core.jobs_3.10.500.v20190620-1426.jar:na]
+2019-12-08 17:48:11,256 [Worker-2: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.
+2019-12-08 19:33:05,918 [Worker-5: Loading available Gradle versions] INFO  o.e.b.c.i.u.g.PublishedGradleVersions - Gradle version information cache is up-to-date. Trying to read.

@@ -43,7 +43,7 @@ public class HeadOfficeController {
 		return null;
 	}
 	
-	public ArrayList<HeadOffice> getHeadOffices() {
+	public ArrayList<HeadOffice> getHeadOffices(int sid) {
 		return headOffices;
 		
 	}
@@ -68,7 +68,7 @@ public class HeadOfficeController {
 		return headOffices;
 	}*/
 	
-	public String addHeadOffice(HeadOffice hOffice) {
+	/*public String addHeadOffice(HeadOffice hOffice) {
 		try {
 		mDAO.addHeadOffice(hOffice);
 		
@@ -78,6 +78,6 @@ public class HeadOfficeController {
 			e.printStackTrace();
 		}
 		return null;
-	}
+	}*/
 
 }//end of class
