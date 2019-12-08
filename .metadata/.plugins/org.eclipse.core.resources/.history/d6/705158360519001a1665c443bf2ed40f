@@ -1,0 +1,43 @@
+package com.shops;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+@ManagedBean
+@SessionScoped
+public class HeadOfficeController {
+	
+	MongoDAO mDAO;
+	ArrayList<HeadOffice>headOffices;
+	
+	public HeadOfficeController() {
+		super();
+		
+		try {
+			mDAO = new MongoDAO();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public String loadHeadOffices() {
+		//System.out.println("In loadProducts()");
+		
+		try {
+			headOffices = mDAO.loadHeadOffices();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ArrayList<HeadOffice> getHeadOffices() {
+		return headOffices;
+	}
+
+}//end of class

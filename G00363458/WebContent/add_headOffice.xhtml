@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<head>
+<meta charset="ISO-8859-1">
+</meta>
+<title>Add Head Office Page</title>
+</head>
+<h:body>
+<h3>Add Head Office</h3>
+  <h:messages globalOnly="true" style="color: red"/>
+<h:form>
+      Store ID:<h:inputText value="#{headOffice._id}" id="hoid" required="true" requiredMessage="ID is mandatory"/>
+      <br></br>
+      <h:message for="hoid" style="color: red"></h:message>
+      <br></br>
+      <br></br>
+      Location: <h:inputText value="#{headOffice.location}" id="location" required="true" requiredMessage="Location is mandatory"/>
+      <br></br>
+      <h:message for="location" style="color: red"></h:message>
+      <br></br>
+      <br></br>
+      <h:commandButton value="Add" action="#{headOfficeController.addHeadOffice(headOffice)}"/>
+      <br></br>
+   </h:form>
+	
+	<h:form>
+	<h:commandLink value="Home" action="index"/>
+	<h:commandLink value="Stores" action="list_stores"/>
+	</h:form>
+
+</h:body>
+</html>

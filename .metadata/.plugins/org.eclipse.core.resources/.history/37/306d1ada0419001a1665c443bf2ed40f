@@ -1,0 +1,56 @@
+package com.shops;
+
+import java.util.ArrayList;
+
+import org.apache.tomcat.jni.User;
+import org.bson.Document;
+
+import com.google.gson.Gson;
+import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+public class MongoDAO {
+	
+	String mongoDB = "storeHeadOfficeDB";
+	String mongoCollection = "storeHeadOffice";
+	
+	MongoClient mongoClient;
+	MongoDatabase database;
+	MongoCollection<Document> collection;
+	
+	
+	/* ======================================================================================================
+	 * Constructor
+	 * ====================================================================================================== */
+	public MongoDAO() throws Exception {
+		mongoClient = new MongoClient();
+		database = mongoClient.getDatabase(mongoDB);
+		collection = database.getCollection(mongoCollection);
+	}
+	
+	public ArrayList<HeadOffice> loadHeadOffices(){
+		//FindIterable<Document> stores = collection.find();
+		FindIterable<Document> headOffices = collection.find();
+		
+		ArrayList<HeadOffice> headOfficeList = new ArrayList<HeadOffice>();
+		Gson gson = new Gson();
+		
+		//Need to tidy up and figure out what is happening with this section
+		for (Document d : headOffices) {
+			HeadOffice ho = gson.fromJson(d.toJson(), HeadOffice.class);
+			   headOfficeList.add(ho);
+		}
+			//System.out.println(d.toJson());
+		mongoClient.close();//check where this goes
+		
+			return headOfficeList;
+			//mongoClient.close();//check where this goes	
+		
+		
+	}
+	
+	
+	
+}//end of class

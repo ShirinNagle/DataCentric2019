@@ -1,0 +1,30 @@
+package com.shops;
+
+import java.util.ArrayList;
+
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
+@ManagedBean
+@SessionScoped
+public class HeadOfficeController {
+	
+	MongoDAO mDAO;
+	ArrayList<HeadOffice>headOffice;
+	
+	public HeadOfficeController() {
+		super();
+		
+		try {
+			mDAO = new MongoDAO();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	public ArrayList<HeadOffice> getHeadOffices() {
+		return headOffice;
+	}
+
+}//end of class

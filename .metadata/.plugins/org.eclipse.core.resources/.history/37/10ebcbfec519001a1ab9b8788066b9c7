@@ -1,0 +1,74 @@
+package com.shops;
+
+import java.util.ArrayList;
+
+import org.apache.tomcat.jni.User;
+import org.bson.Document;
+
+import com.google.gson.Gson;
+import com.mongodb.MongoClient;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+public class MongoDAO {
+	
+	String mongoDB = "storeHeadOfficeDB";
+	String mongoCollection = "storeHeadOffice";
+	
+	MongoClient mongoClient;
+	MongoDatabase database;
+	MongoCollection<Document> collection;
+	
+	
+	/* ======================================================================================================
+	 * Constructor
+	 * ====================================================================================================== */
+	public MongoDAO() throws Exception {
+		mongoClient = new MongoClient();
+		database = mongoClient.getDatabase(mongoDB);
+		collection = database.getCollection(mongoCollection);
+	}
+	
+	public ArrayList<HeadOffice> loadHeadOffices(){
+		//FindIterable<Document> stores = collection.find();
+		FindIterable<Document> headOffices = collection.find();
+		
+		ArrayList<HeadOffice> headOfficeList = new ArrayList<HeadOffice>();
+		Gson gson = new Gson();
+		
+		//
+		for (Document d : headOffices) {
+			HeadOffice ho = gson.fromJson(d.toJson(), HeadOffice.class);
+			   headOfficeList.add(ho);
+		}
+			
+		mongoClient.close();
+		
+			return headOfficeList;
+				
+		
+		
+	}
+	//Not correct yet - when add is clicked Error: add_headOffice.xhtml @14,56 value="#{headOffice._id}": Target Unreachable, identifier [headOffice] resolved to null
+	/*public void addHeadOffice(HeadOffice hOffice){
+		HeadOffice ho = new HeadOffice();
+		Document myDoc = new Document();
+		myDoc.append("_id",hOffice.get_id());
+		myDoc.append("location",hOffice.getLocation());
+		collection.insertOne(myDoc);
+		
+		//headOfficeList.add(hOffice);
+		 
+	}*/
+	
+	public void addHeadOffice(HeadOffice ho) {
+		MongoCollection<Document> headOffices = database.getCollection("storeHeadOffice");
+		Document myDoc = new Document();
+		myDoc.append("_id", ho.get_id()).append("location", ho.getLocation());
+		headOffices.insertOne(myDoc);
+	}
+	
+	
+	
+}//end of class

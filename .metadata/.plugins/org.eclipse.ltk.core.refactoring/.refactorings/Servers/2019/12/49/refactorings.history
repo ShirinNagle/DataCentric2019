@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move &apos;Store_Product_Details.xhtml&apos; to &apos;Servers&apos;" description="Move &apos;Store_Product_Details.xhtml&apos; to &apos;Servers&apos;" destination="/Servers" element1="/G00363458/WebContent/WEB-INF/Store_Product_Details.xhtml" flags="7" id="org.eclipse.ltk.core.refactoring.move.resources" resources="1" stamp="1575554475389" updateReferences="true"/>
+</session>
