@@ -1,0 +1,65 @@
+package com.shops;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
+import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+
+@ManagedBean
+@SessionScoped
+public class StoreProductController {
+	
+	private DAO dao;
+	private ArrayList<StoreProduct> storeProducts;
+	private ArrayList<StoreProduct> sProducts;
+	private String storeProducts1;
+	
+	public StoreProductController() {//Managed bean must have 1 no args constructor
+		 super();
+		 try {
+			dao = new DAO();
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		}
+	}
+	
+	public ArrayList<StoreProduct> getStoreProducts() {
+		return sProducts;
+	}
+	
+	//public String loadStoreProducts(Store s) {
+	public String loadStoreProducts(Store s) {
+		//System.out.println("In loadStoreProducts()");
+		try {
+			storeProducts1 = dao.loadStoreProducts(s);
+			return "Store_Products_Details";
+		} catch (SQLException e) {
+			
+			FacesMessage message = new FacesMessage("Error: Cannot connect to MySQL Database");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	/*public String loadStoreProducts(int sid) {
+		//System.out.println("In loadStoreProducts()");
+		try {
+			storeProducts = dao.loadStoreProducts(sid);
+			return "storeProducts";
+		} catch (SQLException e) {
+			
+			FacesMessage message = new FacesMessage("Error: Cannot connect to MySQL Database");
+            FacesContext.getCurrentInstance().addMessage(null, message);
+			e.printStackTrace();
+		}
+		
+		return null;
+	}*/
+		
+}//class

@@ -78,7 +78,7 @@ public class StoreController {
 		return "list_stores.xhtml";
 	}
 	
-	public void deleteStore(int sid) {
+	/*public void deleteStore(int sid) {
 		try {
 			dao.deleteStore(sid);
 		} catch (SQLIntegrityConstraintViolationException e) {
@@ -91,14 +91,14 @@ public class StoreController {
 			e.printStackTrace();
 		}
 				
-	}//deleteStore
+	}//deleteStore*/
 	
-	/*Try passing Store as variable??
-	 * public void deleteStore(Store s) {
+	//Try passing Store as variable??
+	  public void deleteStore(Store s) {
 		try {
 			dao.deleteStore(s);
 		} catch (SQLIntegrityConstraintViolationException e) {
-			FacesMessage message = new FacesMessage("Error: Store: " + s.getStoreName() + "has not been deleted from MySQL DB, it contains products");//need to change to store name
+			FacesMessage message = new FacesMessage("Error: Store: " + s.getStoreName() + " has not been deleted from MySQL DB, it contains products");//need to change to store name
             FacesContext.getCurrentInstance().addMessage(null, message);
 			e.printStackTrace();
 		} catch (SQLException e) {
@@ -107,6 +107,6 @@ public class StoreController {
 			e.printStackTrace();
 		}
 			
-	}*/
+	}
 
 }//end of class

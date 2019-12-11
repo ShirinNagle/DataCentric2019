@@ -13,6 +13,8 @@ public class HeadOfficeController {
 	
 	//DAO dao;
 	private MongoDAO mDAO;
+	private DAO dao;// may need to remove
+	private Store s;//may need to remove
 	private ArrayList<HeadOffice>headOffices;
 	//String headOffice;
 	
@@ -48,6 +50,33 @@ public class HeadOfficeController {
 		
 	}
 	
+	//overloaded method to see if Id exists
+	public ArrayList<HeadOffice> getHeadOffices(String sid) {
+	 
+		try {
+			dao.getHeadOffices();
+			
+			/*store id is stored as a string in MongoDB but stored as an int in
+			 * MySQL Database need to compare correctly*/ 
+			int idExists = Integer.parseInt(sid);
+			 
+			 if(idExists == s.getStoreId())
+			 {
+			 } 
+			 
+			 
+		} catch (Exception e) {
+			
+			e.printStackTrace();
+		
+		}
+		
+		
+		return headOffices;
+		//more to go here
+		
+	}
+	
 	//Method to check MySQL DB to see if store id already exists
 	/*public ArrayList<HeadOffice> getHeadOffices(int sid) {
 		
@@ -73,7 +102,7 @@ public class HeadOfficeController {
 		mDAO.addHeadOffice(hOffice);
 		
 		} catch(Exception e) {
-			FacesMessage message = new FacesMessage("Error: Cannot connect to Mongo Database");
+			FacesMessage message = new FacesMessage("Error Store ID: " + hOffice.get_id() +" already exists");
             FacesContext.getCurrentInstance().addMessage(null, message);
 			e.printStackTrace();
 		}

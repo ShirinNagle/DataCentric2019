@@ -21,9 +21,13 @@ public class Store {
 	}
 	
 	public Store(String storeName, String founded) {//not sure if useful yet
-		//this.storeId = storeId;
+		//
 		this.storeName = storeName;
 		this.founded = founded;
+	}
+	
+	public Store(int storeId) {
+		this.storeId = storeId;
 	}
 	
 	//Getters and setters for class variables

@@ -88,7 +88,7 @@ public class DAO {
 		
 		}//addStore
 	
-		public void deleteStore(int s) throws SQLException {
+		/*public void deleteStore(int s) throws SQLException {
 		PreparedStatement myStmt = null;
 	
  		myConn = mysqlDS.getConnection();
@@ -96,6 +96,19 @@ public class DAO {
  		
  		myStmt = myConn.prepareStatement(sql);
  		myStmt.setInt(1,s);
+ 		myStmt.executeUpdate();	
+ 		
+ 		myConn.close();
+		}//deleteStore*/
+	
+	public void deleteStore(Store s) throws SQLException {
+		PreparedStatement myStmt = null;
+	
+ 		myConn = mysqlDS.getConnection();
+ 		String sql = "delete from store where id = ?;";
+ 		
+ 		myStmt = myConn.prepareStatement(sql);
+ 		myStmt.setInt(1,s.getStoreId());
  		myStmt.executeUpdate();	
  		
  		myConn.close();
@@ -152,17 +165,53 @@ public class DAO {
 	/* ======================================================================================================
 	 * StoreProduct Methods
 	 * ====================================================================================================== */
-		public ArrayList<StoreProduct> loadStoreProducts(int storeId) throws SQLException{
-			//PreparedStatement myStmt = null;
+	/*public ArrayList<StoreProduct> loadStoreProducts(int sid) throws SQLException{
+	//public String loadStoreProducts(int sid) throws SQLException{
+		//PreparedStatement myStmt = null;
+		Statement myStmt = null;
+		myConn = mysqlDS.getConnection();
+		//I know the problem is here - store products are not loading in. If I hard code a 1 in the sql string it works but isn't picking up the int variable.
+		String sql = "select p.pid, p.sid, p.prodName, p.price, s.founded, s.name from product p inner join store s on p.sid = s.id where s.id like ?";;
+		//String sql = "select p.pid, p.sid, p.prodName, p.price, s.founded, s.name from product p inner join store s on p.sid = s.id where s.id = " +storeId;;
+		
+		myStmt = myConn.prepareStatement(sql);
+
+		
+		myRs = myStmt.executeQuery(sql);
+		ArrayList<StoreProduct> storeProducts = new ArrayList<StoreProduct>();	
+		
+		// process result set
+		while (myRs.next()) {
+			StoreProduct sp = new StoreProduct();
+			
+			sp.setStoreId(myRs.getInt("sid"));
+			
+			sp.setProdId(myRs.getInt("pid"));
+		
+			sp.setProdName(myRs.getString("prodName"));
+			
+			sp.setPrice(myRs.getFloat("price"));
+			
+			sp.setFounded(myRs.getString("founded"));
+			
+			sp.setStoreName(myRs.getString("name"));
+			
+			storeProducts.add(sp);
+			System.out.print(sp);
+
+		
+	}			
+	return storeProducts;
+}*/
+		//public ArrayList<StoreProduct> loadStoreProducts(Store s) throws SQLException{
+		/*public String loadStoreProducts(Store s) throws SQLException{
+			
 			Statement myStmt = null;
 			myConn = mysqlDS.getConnection();
-			//I know the problem is here - store products are not loading in. If I hard code a 1 in the sql string it works but isn't picking up the int variable.
-			String sql = "select p.pid, p.sid, p.prodName, p.price, s.founded, s.name from product p inner join store s on p.sid = s.id where s.id like " + storeId;;
-			//String sql = "select p.pid, p.sid, p.prodName, p.price, s.founded, s.name from product p inner join store s on p.sid = s.id where s.id = " +storeId;;
-			
-			myStmt = myConn.prepareStatement(sql);
-
-			
+			//If I hard code a 1 in the sql string it works but isn't picking up the int storeId variable.
+			//String sql = "select p.pid, p.sid, p.prodName, p.price, s.founded, s.name from product p inner join store s on p.sid = s.id where s.id like " + storeId;;
+			String sql = "select p.pid, p.sid, p.prodName, p.price, s.founded, s.name from product p inner join store s on p.sid = s.id where s.id = " +s.getStoreId();;
+			myStmt = myConn.prepareStatement(sql);		
 			myRs = myStmt.executeQuery(sql);
 			ArrayList<StoreProduct> storeProducts = new ArrayList<StoreProduct>();	
 			
@@ -183,24 +232,65 @@ public class DAO {
 				sp.setStoreName(myRs.getString("name"));
 				
 				storeProducts.add(sp);
-				System.out.print(sp);
-
+				System.out.print(sp);//displays on the console	
+		}			
+		//return storeProducts;
+			return "Store_Product_Details";
+	}*/
+		
+		public String loadStoreProducts(Store s) throws SQLException {
 			
+			
+			Statement myStmt = null;
+			myConn = mysqlDS.getConnection();
+			//If I hard code a 1 in the sql string it works but isn't picking up the int storeId variable.
+			//String sql = "select p.pid, p.sid, p.prodName, p.price, s.founded, s.name from product p inner join store s on p.sid = s.id where s.id like " + storeId;;
+			String sql = "select p.pid, p.sid, p.prodName, p.price, s.founded, s.name from product p inner join store s on p.sid = s.id where s.id = " +s.getStoreId();;
+			myStmt = myConn.prepareStatement(sql);		
+			myRs = myStmt.executeQuery(sql);
+			ArrayList<StoreProduct> storeProducts = new ArrayList<StoreProduct>();	
+			
+			// process result set
+			while (myRs.next()) {
+				StoreProduct sp = new StoreProduct();
+				
+				sp.setStoreId(myRs.getInt("sid"));
+				
+				sp.setProdId(myRs.getInt("pid"));
+			
+				sp.setProdName(myRs.getString("prodName"));
+				
+				sp.setPrice(myRs.getFloat("price"));
+				
+				sp.setFounded(myRs.getString("founded"));
+				
+				sp.setStoreName(myRs.getString("name"));
+				
+				storeProducts.add(sp);
+				System.out.print(sp);//displays on the console	
 		}
-			
-		return storeProducts;
-	}
+			//return storeProducts;
+			return "Store_Product_Details.xhtml";
+		}	
 		/* ======================================================================================================
 		 * HeadOffice Methods
 		 * ====================================================================================================== */
-		/*public ArrayList<HeadOffice> getHeadOffices(int sid) throws SQLException {
+
+		public void getHeadOffices() {
+			// TODO Auto-generated method stub
+			
+		}
+
+		
+		
+		/*Need to check this properly - to see if it works
+		 * public String getHeadOffices(int sid) throws SQLException {
+			
 			Statement myStmt = null;
 			myConn = mysqlDS.getConnection();
-			
-			String sql ="select * from store where sid= ?;";
+			String sql = "select id from store;";
 			myRs = myStmt.executeQuery(sql);
 			return null;
-			
 		}*/
 		
 

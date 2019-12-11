@@ -7,6 +7,7 @@ import org.bson.Document;
 
 import com.google.gson.Gson;
 import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
@@ -43,7 +44,7 @@ public class MongoDAO {
 			   headOfficeList.add(ho);
 		}
 			
-		mongoClient.close();
+		//mongoClient.close();
 		
 			return headOfficeList;
 		
@@ -57,6 +58,23 @@ public class MongoDAO {
 		Document myDoc = new Document();
 		myDoc.append("_id", ho.get_id()).append("location", ho.getLocation());
 		headOffices.insertOne(myDoc);
+	}
+	 
+	 /*public void addHeadOffice(HeadOffice ho) {
+			MongoCollection<Document> headOffices = database.getCollection("storeHeadOffice");
+			Document myDoc = new Document();
+			if(ho.get_id() == "_id")
+			{
+			 
+			}
+			else
+			myDoc.append("_id", ho.get_id()).append("location", ho.getLocation());
+			headOffices.insertOne(myDoc);
+		}*/
+
+	private void MongoException(String string) {
+		
+		
 	}
 	
 	

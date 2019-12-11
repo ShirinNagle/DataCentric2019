@@ -44,18 +44,18 @@ public class ProductController {
 		return null;
 	}
 	
-	/*public String loadStoreProducts1(int storeId) {
+	/*public String loadStoreProducts(int storeId) {
 		//System.out.println("In loadProducts()");
 		
 		try {
-			products = dao.loadStoreProducts1(storeId);
-			//return "products";
+			products = dao.loadStoreProducts(storeId);
+			return "storeProducts";
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
 		}
 		return null;
-	}//loadStoreProducts1*/
+	}//loadStoreProducts*/
 	
 	
 	/*public ArrayList<Product> getStoreProducts1(int storeId) {

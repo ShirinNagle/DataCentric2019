@@ -1,0 +1,83 @@
+package com.shops;
+
+import java.util.ArrayList;
+
+import org.apache.tomcat.jni.User;
+import org.bson.Document;
+
+import com.google.gson.Gson;
+import com.mongodb.MongoClient;
+import com.mongodb.MongoException;
+import com.mongodb.client.FindIterable;
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoDatabase;
+
+public class MongoDAO {
+	
+	private String mongoDB = "storeHeadOfficeDB";
+	private String mongoCollection = "storeHeadOffice";
+	
+	private MongoClient mongoClient;
+	private MongoDatabase database;
+	private MongoCollection<Document> collection;
+	
+	
+	/* ======================================================================================================
+	 * Constructor
+	 * ====================================================================================================== */
+	public MongoDAO() throws Exception {
+		mongoClient = new MongoClient();
+		database = mongoClient.getDatabase(mongoDB);
+		collection = database.getCollection(mongoCollection);
+	}
+	
+	public ArrayList<HeadOffice> loadHeadOffices(){
+		
+		FindIterable<Document> headOffices = collection.find();
+		
+		ArrayList<HeadOffice> headOfficeList = new ArrayList<HeadOffice>();
+		Gson gson = new Gson();
+		
+		//
+		for (Document d : headOffices) {
+			HeadOffice ho = gson.fromJson(d.toJson(), HeadOffice.class);
+			   headOfficeList.add(ho);
+		}
+			
+		mongoClient.close();
+		
+			return headOfficeList;
+		
+	}//loadHeadOffices()
+	
+	
+	
+	// This worked but after I tried to check MySQL if a store ID existed - it no longer worked even after removing the code for that - Is there an issue with putting DAO query in MongoDAO
+	 public void addHeadOffice(HeadOffice ho) {
+		MongoCollection<Document> headOffices = database.getCollection("storeHeadOffice");
+		Document myDoc = new Document();
+		myDoc.append("_id", ho.get_id()).append("location", ho.getLocation());
+		headOffices.insertOne(myDoc);
+	}
+	 
+	 /*public void addHeadOffice(HeadOffice ho) {
+			MongoCollection<Document> headOffices = database.getCollection("storeHeadOffice");
+			Document myDoc = new Document();
+			if(ho.get_id() == "_id")
+			{
+			 MongoException("Error _id already exists");
+			}
+			else
+			myDoc.append("_id", ho.get_id()).append("location", ho.getLocation());
+			headOffices.insertOne(myDoc);
+		}*/
+
+	private void MongoException(String string) {
+		
+		
+	}
+	
+	
+	
+	
+}//end of class
